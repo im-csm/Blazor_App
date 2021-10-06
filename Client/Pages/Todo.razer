@@ -1,8 +1,10 @@
 @page "/todo"
 
+<!-- Counter for how many items are done -->
 <h1>Todo (@todos.Count(todo => !todo.IsDone))</h1>
 
 <ul>
+    <!-- A loop to display each item in the lsit -->
     @foreach (var todo in todos)
     {
         <li>
@@ -12,6 +14,7 @@
     }
 </ul>
 
+<!-- Adds functionality to add items to the list -->
 <input placeholder="Something todo" @bind="newTodo" />
 <button @onclick="AddTodo">Add todo</button>
 
@@ -19,11 +22,12 @@
     private List<TodoItem> todos = new();
     private string newTodo;
 
+    // Function for creating a new Todo item.
     private void AddTodo()
     {
-        if (!string.IsNullOrWhiteSpace(newTodo))
+        if (!string.IsNullOrWhiteSpace(newTodo))    // Checks to see if the new Todo is not an emptyy string
         {
-            todos.Add(new TodoItem { Title = newTodo });
+            todos.Add(new TodoItem { Title = newTodo });    // Adds the new todo item to the list
             newTodo = string.Empty;
         }
     }
